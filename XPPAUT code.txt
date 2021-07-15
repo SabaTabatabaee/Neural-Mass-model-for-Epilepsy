@@ -1,0 +1,15 @@
+
+par cpy_ei=0.8,ctc_ei=4.5,ci1_ei=0.3,ctc_re=10,cpy_py=1.89,miangin_py=0.7,miangin_tc=0.1,cpy_re=1.4,cpy_i1=4,ci1_py=1.8,cre_re=0.01,cre_tc=1.4,cpy_tc=3,ctc_py=1,cpy_i2=1.5,ci2_i1=0.1,ci1_i2=0.5,ci2_py=0.05,ctc_i1=0.05,ctc_i2=0.05,cei_py=0.442,cei_i1=0.05
+par tau1=21.5,tau2=31.5,tau3=0.1,tau4=3.8,tau5=3.9,tau6=4.5,h_py=-0.4,h_re=-3.2,h_i2=-2,h_tc=-2.5,h_i1=-3.4,h_ei=-1
+par sigma=250000
+init PY=0.2775,I1=0.5345,I2=-1.0365,TC=-0.1216,RE=-0.0401,EI=0.2888
+PY'=(h_py -PY+cpy_py*(1/(1+sigma^(-(PY)))) -ci1_py*(1/(1+sigma^(-I1))) -ci2_py*(1/(1+sigma^(-I2))) + ctc_py*(1/(1+sigma^(-TC)))+cei_py*(1/(1+sigma^(-EI))))*tau1+miangin_py
+I1'=(h_i1 -I1 +cpy_i1*(1/(1+sigma^(-(PY)))) -ci2_i1*(1/(1+sigma^(-I2))) +ctc_i1*(1/(1+sigma^(-TC)))+cei_i1*(1/(1+sigma^(-EI))))*tau2
+I2'=(h_i2 -I2 +cpy_i2*(1/(1+sigma^(-(PY)))) -ci1_i2*(1/(1+sigma^(-I1))) +ctc_i2*(1/(1+sigma^(-TC))))*tau3 
+TC'=(h_tc -TC +cpy_tc*(1/(1+sigma^(-(PY)))) -cre_tc*(1/(1+sigma^(-RE))))*tau4+miangin_tc
+RE'=(h_re -RE +cpy_re*(1/(1+sigma^(-(PY)))) + ctc_re*(1/(1+sigma^(-TC))) -cre_re*(1/(1+sigma^(-RE))))*tau5
+EI'=(h_ei -EI +cpy_ei*(1/(1+sigma^(-(PY)))) + ctc_ei*(1/(1+sigma^(-TC))) -ci1_ei*(1/(1+sigma^(-I1))))*tau6
+aux  OU=(PY+I1+I2+EI)/4
+@meth=Runge-Kutta,dt=0.0039,total=1000
+
+done
