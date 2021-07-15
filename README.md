@@ -1,1 +1,1 @@
-This repository contains the code used for the journal paper titled "The critical role of spiny stellate cells in seizure onset based on dynamic analysis of a neural mass model" by Saba Tabatabaee, Fariba Bahrami, and Mahyar Janahmadi. The preprint of the paper can be found here:
+
